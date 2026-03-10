@@ -1,24 +1,25 @@
-# Angular Cơ Bản -- Buổi 1
+# Angular Cơ Bản -- Buổi 1 (Angular v22)
 
 ## 1. Angular là gì?
 
 Angular là một framework phát triển ứng dụng web **frontend** được phát
-triển bởi Google. Angular sử dụng **TypeScript** để xây dựng các ứng
-dụng **Single Page Application (SPA)**.
+triển bởi Google.\
+Angular sử dụng **TypeScript** để xây dựng các ứng dụng **Single Page
+Application (SPA)**.
 
 ### Ưu điểm của Angular
 
--   Kiến trúc rõ ràng
--   Hỗ trợ TypeScript
--   Có CLI mạnh mẽ
--   Dễ mở rộng cho dự án lớn
--   Có hệ sinh thái lớn
+- Kiến trúc rõ ràng
+- Hỗ trợ TypeScript
+- Angular CLI mạnh mẽ
+- Phù hợp cho dự án lớn
+- Hệ sinh thái phong phú
 
-------------------------------------------------------------------------
+---
 
-## 2. Cài đặt môi trường
+# 2. Cài đặt môi trường
 
-### Bước 1: Cài NodeJS
+## Bước 1: Cài NodeJS
 
 Tải tại:
 
@@ -26,46 +27,56 @@ https://nodejs.org
 
 Kiểm tra:
 
-``` bash
+```bash
 node -v
 npm -v
 ```
 
-------------------------------------------------------------------------
+Khuyến nghị:
 
-### Bước 2: Cài Angular CLI
+    Node >= 18
 
-``` bash
+---
+
+## Bước 2: Cài Angular CLI
+
+```bash
 npm install -g @angular/cli
 ```
 
 Kiểm tra:
 
-``` bash
+```bash
 ng version
 ```
 
-------------------------------------------------------------------------
+---
 
-## 3. Tạo project Angular
+# 3. Tạo project Angular
 
-### Tạo project mới
+## Tạo project mới
 
-``` bash
-ng new my-angular-app
+```bash
+ng new angular-learning
 ```
 
-Chọn:
+Angular CLI sẽ hỏi:
 
-    Would you like to add Angular routing? -> Yes
-    Which stylesheet format -> CSS
+    Would you like to add Angular routing? → Yes
+    Which stylesheet format would you like to use? → CSS
 
-------------------------------------------------------------------------
+Angular v22 mặc định:
 
-### Chạy project
+- Standalone Components
+- Vite build system
+- Vitest test runner
 
-``` bash
-cd my-angular-app
+---
+
+## Chạy project
+
+```bash
+cd angular-learning
 ng serve
 ```
 
@@ -73,121 +84,150 @@ Mở trình duyệt:
 
     http://localhost:4200
 
-------------------------------------------------------------------------
+---
 
-## 4. Cấu trúc project Angular
+# 4. Cấu trúc project Angular v22
 
-    src/
-     ├── app/
-     │   ├── app.component.ts
-     │   ├── app.component.html
-     │   ├── app.component.css
-     │
-     ├── assets/
-     ├── index.html
-     └── main.ts
+Cấu trúc project mặc định:
+
+    src
+     └── app
+          ├── app.config.ts
+          ├── app.routes.ts
+          ├── app.ts
+          ├── app.html
+          └── app.css
 
 ### Giải thích
 
-  File                 Chức năng
-  -------------------- -----------------------
-  main.ts              điểm bắt đầu ứng dụng
-  app.component.ts     logic component
-  app.component.html   giao diện
-  app.component.css    style
+File Chức năng
 
-------------------------------------------------------------------------
+---
 
-## 5. Component trong Angular
+- main.ts Điểm khởi động ứng dụng
+- app.ts Root component
+- app.html Giao diện root
+- app.css Style root
+- app.routes.ts Khai báo routing
+- app.config.ts Cấu hình Angular app
+
+---
+
+# 5. Component trong Angular
 
 Component là **khối xây dựng cơ bản của Angular**.
 
-Ví dụ:
+Angular v22 sử dụng **Standalone Component**, không cần sử dụng
+`NgModule`.
 
-### app.component.ts
+## Ví dụ Component
 
-``` ts
+### app.ts
+
+```ts
 import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  imports: [RouterOutlet],
+  templateUrl: './app.html',
+  styleUrl: './app.css',
 })
-export class AppComponent {
-  title = 'Hello Angular';
+export class App {
+  title = 'angular-learning';
 }
 ```
 
-### app.component.html
+---
 
-``` html
-<h1>{{ title }}</h1>
+### app.html
+
+```html
+<h1>Hello {{ title }}</h1>
+
+<router-outlet></router-outlet>
 ```
 
-Angular sử dụng **Interpolation**:
+Angular sử dụng **Interpolation** để hiển thị dữ liệu:
 
     {{ variable }}
 
-------------------------------------------------------------------------
+---
 
-## 6. Data Binding
+# 6. Data Binding
 
-Angular có nhiều kiểu binding.
+Angular hỗ trợ nhiều kiểu Data Binding.
 
-### Interpolation
+## Interpolation
 
-``` html
-<h1>{{title}}</h1>
+```html
+<h1>{{ title }}</h1>
 ```
 
-### Property Binding
+---
 
-``` html
-<img [src]="imageUrl">
+## Property Binding
+
+```html
+<img [src]="imageUrl" />
 ```
 
-### Event Binding
+---
 
-``` html
+## Event Binding
+
+```html
 <button (click)="clickMe()">Click</button>
 ```
 
-------------------------------------------------------------------------
+Ví dụ:
 
-## 7. Tạo Component mới
+```ts
+clickMe() {
+  alert("Button clicked");
+}
+```
 
-``` bash
+---
+
+# 7. Tạo Component mới
+
+Sử dụng Angular CLI:
+
+```bash
 ng generate component home
 ```
 
-hoặc
+hoặc:
 
-``` bash
+```bash
 ng g c home
 ```
 
 Angular sẽ tạo:
 
     home/
-     ├── home.component.ts
-     ├── home.component.html
-     ├── home.component.css
+     ├── home.ts
+     ├── home.html
+     ├── home.css
 
-------------------------------------------------------------------------
+Ví dụ:
+
+```ts
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-home',
+  standalone: true,
+  template: `<h2>Trang Home</h2>`,
+})
+export class HomeComponent {}
+```
+
+---
 
 # BÀI TẬP THỰC HÀNH
-
-## Bài 1
-
-Tạo project Angular mới.
-
-Yêu cầu:
-
--   Tên project: `angular-learning`
--   Chạy project thành công
-
-------------------------------------------------------------------------
 
 ## Bài 2
 
@@ -196,7 +236,7 @@ Thay đổi nội dung trang chủ:
     Xin chào Angular
     Tôi đang học Angular Framework
 
-------------------------------------------------------------------------
+---
 
 ## Bài 3
 
@@ -208,15 +248,15 @@ Hiển thị nội dung:
 
     Đây là trang giới thiệu
 
-------------------------------------------------------------------------
+---
 
 ## Bài 4
 
 Tạo biến trong component:
 
-``` ts
-name = "Nguyen Van A"
-age = 25
+```ts
+name = 'Nguyen Van A';
+age = 25;
 ```
 
 Hiển thị ra HTML:
@@ -224,7 +264,14 @@ Hiển thị ra HTML:
     Tên: ...
     Tuổi: ...
 
-------------------------------------------------------------------------
+Ví dụ:
+
+```html
+<p>Tên: {{ name }}</p>
+<p>Tuổi: {{ age }}</p>
+```
+
+---
 
 ## Bài 5 (Nâng cao)
 
@@ -236,22 +283,36 @@ Khi click hiển thị:
 
     Bạn đã click button
 
-------------------------------------------------------------------------
+Ví dụ:
+
+```html
+<button (click)="handleClick()">Click Me</button>
+```
+
+```ts
+handleClick() {
+  alert("Bạn đã click button");
+}
+```
+
+---
 
 # TỔNG KẾT BUỔI 1
 
 Trong buổi này bạn đã học:
 
--   Angular là gì
--   Cài đặt Angular CLI
--   Tạo project Angular
--   Cấu trúc project
--   Component
--   Data Binding cơ bản
+- Angular là gì
+- Cài đặt Angular CLI
+- Tạo project Angular
+- Cấu trúc project Angular v22
+- Component
+- Data Binding cơ bản
 
-Buổi sau sẽ học:
+---
 
--   Routing
--   Service
--   HTTP API
--   CRUD Angular
+# Buổi sau sẽ học
+
+- Angular Routing
+- Service
+- HTTP API
+- CRUD Angular
