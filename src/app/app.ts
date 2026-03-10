@@ -15,5 +15,6 @@ export class App {
   // method: function
   sayHello() {
     console.log('hello ');
+    alert('hello ' + this.fullName);
   }
 }
