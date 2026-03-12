@@ -33,14 +33,6 @@ thị**, không tải lại toàn bộ trang.
 
 # 2. File routing trong Angular v22
 
-Khi tạo project với:
-
-ng new angular-learning
-
-và chọn:
-
-Add Angular Routing → Yes
-
 Angular sẽ tạo file:
 
 src/app/app.routes.ts
