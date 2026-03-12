@@ -49,12 +49,12 @@ Ví dụ:
 
 ```ts
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home';
-import { AboutComponent } from './about/about';
+import { Home } from './home/home';
+import { About } from './about/about';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
+  { path: '', component: Home },
+  { path: 'about', component: About },
 ];
 ```
 
@@ -62,10 +62,8 @@ Giải thích:
 
 Path Component
 
----
-
-/ HomeComponent
-/about AboutComponent
+- "/" hiển thị giao diện của Home
+- "/about" hiển thị giao diện của About
 
 ---
 
@@ -81,7 +79,7 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  standalone: true,
+  imports: [],
   imports: [RouterOutlet],
   templateUrl: './app.html',
 })
@@ -129,13 +127,11 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  template: `
-    <h2>Trang chủ</h2>
-    <p>Chào mừng bạn đến với website Angular</p>
-  `,
+  imports: [],
+  templateUrl: './home.html',
+  styleUrl: './home.css',
 })
-export class HomeComponent {}
+export class Home {}
 ```
 
 ---
@@ -149,22 +145,38 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-about',
-  standalone: true,
-  template: `
-    <h2>Trang giới thiệu</h2>
-    <p>Đây là trang giới thiệu về ứng dụng</p>
-  `,
+  imports: [],
+  templateUrl: './about.html',
+  styleUrl: './about.css',
 })
-export class AboutComponent {}
+export class About {}
 ```
 
 ---
 
 # 8. RouterLink
 
-`routerLink` dùng để **điều hướng giữa các trang**.
+`routerLink` là directive dùng để **điều hướng giữa các route trong
+Angular mà không reload trang**.
 
-## app.html
+Thay vì dùng HTML truyền thống:
+
+```html
+<a href="/about">About</a>
+```
+
+Angular sử dụng:
+
+```html
+<a routerLink="/about">About</a>
+```
+
+Khi click link, Angular sẽ **thay đổi component hiển thị trong
+RouterOutlet**.
+
+---
+
+## Ví dụ RouterLink
 
 ```html
 <h1>Angular Routing Demo</h1>
@@ -181,18 +193,50 @@ export class AboutComponent {}
 
 ---
 
+## RouterLink dạng mảng (khuyến nghị)
+
+Angular thường dùng dạng:
+
+```html
+<a [routerLink]="['/about']">About</a>
+```
+
+Cách này giúp dễ dàng truyền **tham số động** trong route.
+
+---
+
+## RouterLinkActive (Highlight menu)
+
+Dùng để đánh dấu menu đang active.
+
+```html
+<a routerLink="/" routerLinkActive="active">Home</a>
+<a routerLink="/about" routerLinkActive="active">About</a>
+```
+
+Ví dụ CSS:
+
+```css
+.active {
+  color: red;
+  font-weight: bold;
+}
+```
+
+---
+
 # 9. Ví dụ hoàn chỉnh
 
 ## app.routes.ts
 
 ```ts
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home';
-import { AboutComponent } from './pages/about/about';
+import { Home } from './pages/home/home';
+import { About } from './pages/about/about';
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'about', component: AboutComponent },
+  { path: '', component: Home },
+  { path: 'about', component: About },
 ];
 ```
 
@@ -233,7 +277,7 @@ ng g c pages/contact
 Cập nhật routes:
 
 ```ts
-{ path: 'contact', component: ContactComponent }
+{ path: 'contact', component: Contact }
 ```
 
 ---
@@ -242,9 +286,9 @@ Cập nhật routes:
 
 Thêm menu điều hướng:
 
-    Home
-    About
-    Contact
+Home\
+About\
+Contact
 
 Sử dụng:
 
@@ -256,8 +300,8 @@ routerLink
 
 Trang Contact hiển thị nội dung:
 
-    Đây là trang liên hệ
-    Email: example@gmail.com
+Đây là trang liên hệ\
+Email: example@gmail.com
 
 ---
 
@@ -265,13 +309,13 @@ Trang Contact hiển thị nội dung:
 
 Tạo route:
 
-    /products
+/products
 
 Hiển thị danh sách:
 
-    Laptop
-    Phone
-    Tablet
+Laptop\
+Phone\
+Tablet
 
 ---
 
@@ -283,6 +327,7 @@ Trong buổi này bạn đã học:
 - Cấu hình routes
 - RouterOutlet
 - RouterLink
+- RouterLinkActive
 - Tạo nhiều trang trong Angular
 
 ---
