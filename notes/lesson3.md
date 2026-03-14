@@ -190,9 +190,12 @@ Ví dụ:
 ```css
 .story-card {
   border: 1px solid #ddd;
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 20px 0;
 }
 ```
 
@@ -235,6 +238,7 @@ Thêm thông tin:
 
 - Năm phát hành
 - Thể loại
+- Hình ảnh
 
 ---
 
@@ -262,11 +266,23 @@ Gợi ý:
 
 ## Bài 5 (Nâng cao)
 
-Hiển thị số thứ tự truyện:
+Hiển thị danh sách truyện tranh dưới dạng **table**.
 
-    1. One Piece
-    2. Naruto
-    3. Doraemon
+Bảng cần có các cột:
+
+- STT
+- Hình ảnh
+- Tên truyện
+- Tác giả
+- Lượt xem
+
+Ví dụ kết quả:
+
+| STT | Hình ảnh | Tên truyện | Tác giả           | Lượt xem |
+| --- | -------- | ---------- | ----------------- | -------- |
+| 1   | (image)  | One Piece  | Eiichiro Oda      | 100000   |
+| 2   | (image)  | Naruto     | Masashi Kishimoto | 90000    |
+| 3   | (image)  | Doraemon   | Fujiko F. Fujio   | 70000    |
 
 Gợi ý:
 
