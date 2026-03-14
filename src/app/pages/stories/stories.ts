@@ -25,4 +25,7 @@ export class Stories {
       views: 70000,
     },
   ];
+  handleClick(title: string) {
+    alert(`Hello from Stories component! You clicked on "${title}"`);
+  }
 }
