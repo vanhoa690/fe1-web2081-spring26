@@ -64,7 +64,7 @@ export class AddStory {}
 
 ```ts
 import { Component } from '@angular/core';
-import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-add-story',
@@ -73,13 +73,15 @@ import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './add-story.css',
 })
 export class AddStory {
-  constructor(private fb: FormBuilder) {}
+  addForm: FormGroup;
 
-  addForm = this.fb.group({
-    title: [''],
-    author: [''],
-    views: [0],
-  });
+  constructor(private fb: FormBuilder) {
+    this.addForm = this.fb.group({
+      title: '',
+      author: '',
+      views: 0,
+    });
+  }
 
   submitForm() {
     console.log(this.addForm.value);
@@ -161,6 +163,7 @@ Ví dụ:
 
 ```ts
 title: ['', [Validators.required, Validators.minLength(3)]];
+views: ['', Validators.min(0)];
 ```
 
 ---
@@ -225,6 +228,9 @@ form {
 
 input {
   padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 10px;
 }
 
 button {
