@@ -76,9 +76,9 @@ export class AddStory {
   constructor(private fb: FormBuilder) {}
 
   addForm = this.fb.group({
-    title: ['', [Validators.required, Validators.minLength(3)]],
-    author: ['', Validators.required],
-    views: [0, Validators.min(1)],
+    title: [''],
+    author: [''],
+    views: [0],
   });
 
   submitForm() {
@@ -95,6 +95,7 @@ Angular sử dụng:
 
 - `formGroup`
 - `formControlName`
+- `(ngSubmit)`
 
 ## add-story.html
 
@@ -149,14 +150,12 @@ Kết quả:
 
 Angular cung cấp nhiều Validators:
 
-Validator Ý nghĩa
-
----
-
-required bắt buộc nhập
-minLength độ dài tối thiểu
-min giá trị nhỏ nhất
-max giá trị lớn nhất
+| Validator | Ý nghĩa          |
+| --------- | ---------------- |
+| required  | Bắt buộc nhập    |
+| minLength | Độ dài tối thiểu |
+| min       | Giá trị nhỏ nhất |
+| max       | Giá trị lớn nhất |
 
 Ví dụ:
 
@@ -168,11 +167,7 @@ title: ['', [Validators.required, Validators.minLength(3)]];
 
 # 8. Xử lý lỗi với get()
 
-Angular cho phép truy cập control bằng:
-
-```ts
-this.addForm.get('title');
-```
+Angular cho phép truy cập control bằng `get`:
 
 Ví dụ trong component:
 
@@ -191,7 +186,7 @@ get title() {
 ```html
 <input type="text" formControlName="title" />
 
-@if (addForm.get('title')?.invalid && addForm.get('title')?.touched) {
+@if (title?.invalid && title?.touched) {
 
 <p style="color:red">Tên truyện phải ít nhất 3 ký tự</p>
 
@@ -278,16 +273,18 @@ Validation:
 
 ## Bài 3 (Nâng cao)
 
-Hiển thị lỗi validation sử dụng:
+Hiển thị lỗi validation sử dụng `get` trong components:
 
 ```ts
-addForm.get('fieldName');
+get password() {
+  return this.addForm.get('password');
+}
 ```
 
 Ví dụ:
 
 ```html
-@if(addForm.get('password')?.invalid){
+@if(password?.invalid){
 <p>Password không hợp lệ</p>
 }
 ```
