@@ -15,4 +15,8 @@ export class AddStory {
       title: '', // form co input title
     });
   }
+
+  submitForm() {
+    console.log('Form', this.addForm.value);
+  }
 }
