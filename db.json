@@ -1,4 +1,9 @@
 {
-  "stories": [],
+  "stories": [
+    {
+      "title": "naruto",
+      "id": 1
+    }
+  ],
   "users": []
 }
