@@ -121,11 +121,18 @@ export class StoryService {
 
 ### Bài 1
 
-Thêm author, views
+- Thêm author, views
+- Validate title required
 
 ### Bài 2
 
-Validate title required
+- Tạo form Thêm Product
+
+- name
+
+- price
+
+- Gọi API POST
 
 ### Bài 3
 
