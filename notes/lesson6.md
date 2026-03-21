@@ -189,7 +189,7 @@ button {
 Gợi ý:
 
 ```ts
-deletingId: number | null = null;
+loading: boolean = false;
 ```
 
 ---

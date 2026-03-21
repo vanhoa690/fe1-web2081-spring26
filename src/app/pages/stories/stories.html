@@ -1,12 +1,28 @@
-<h2>Danh sách truyện tranh</h2>
+<h2>Danh sách truyện</h2>
 
-@for (story of stories; track story.title) {
-  <div class="story-card">
-    <h3>{{ story.title }}</h3>
+@if (stories.length === 0) {
+  <p>Không có truyện nào</p>
+}
+@if (stories.length > 0) {
+  <table border="1" cellpadding="10" cellspacing="0">
+    <tr>
+      <th>ID</th>
+      <th>Tên truyện</th>
+      <!-- <th>Tác giả</th>
+      <th>Lượt xem</th> -->
+      <th>Hành động</th>
+    </tr>
 
-    <p>Tác giả: {{ story.author }}</p>
-
-    <p>Lượt xem: {{ story.views }}</p>
-    <button (click)="handleClick(story.title)">Click me</button>
-  </div>
+    @for (story of stories; track story.id) {
+      <tr>
+        <td>{{ story.id }}</td>
+        <td>{{ story.title }}</td>
+        <!-- <td>{{ story.author }}</td>
+        <td>{{ story.views }}</td> -->
+        <td>
+          <button (click)="deleteStory(story.id)">Xóa</button>
+        </td>
+      </tr>
+    }
+  </table>
 }
