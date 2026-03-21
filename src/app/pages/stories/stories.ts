@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -8,23 +9,18 @@ import { Component } from '@angular/core';
 })
 export class Stories {
   // ko dung const stories
-  stories = [
-    {
-      title: 'One Piece',
-      author: 'Oda',
-      views: 100000,
-    },
-    {
-      title: 'Naruto',
-      author: 'Kishimoto',
-      views: 90000,
-    },
-    {
-      title: 'Doraemon',
-      author: 'Fujiko F Fujio',
-      views: 70000,
-    },
-  ];
+  stories = []; // state stories luu data
+
+  constructor(private http: HttpClient) {} // inject
+
+  ngOnInit() {
+    this.http.get('http://localhost:3000/stories').subscribe({
+      next: (data) => {
+        this.stories = data;
+      },
+      error: () => {},
+    });
+  }
   handleClick(title: string) {
     alert(`Hello from Stories component! You clicked on "${title}"`);
   }
