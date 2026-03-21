@@ -93,16 +93,16 @@ export class Stories implements OnInit {
 } @if (stories.length > 0) {
 <table border="1" cellpadding="10" cellspacing="0">
   <tr>
-    <th>STT</th>
+    <th>ID</th>
     <th>Tên truyện</th>
     <th>Tác giả</th>
     <th>Lượt xem</th>
     <th>Hành động</th>
   </tr>
 
-  @for (story of stories; let i = $index) {
+  @for (story of stories; track story.id) {
   <tr>
-    <td>{{ i + 1 }}</td>
+    <td>{{ story.id }}</td>
     <td>{{ story.title }}</td>
     <td>{{ story.author }}</td>
     <td>{{ story.views }}</td>
@@ -172,7 +172,7 @@ button {
 
 ### Bài 2
 
-- Thêm confirm khi xóa
+- Thay thế any thành type/interface Story
 
 ### Bài 3
 
