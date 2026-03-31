@@ -5,6 +5,7 @@ import { Products } from './pages/products/products';
 import { About } from './pages/about/about';
 import { Stories } from './pages/stories/stories';
 import { AddStory } from './pages/add-story/add-story';
+import { EditStory } from './pages/edit-story/edit-story';
 
 export const routes: Routes = [
   {
@@ -30,5 +31,10 @@ export const routes: Routes = [
   {
     path: 'add-story',
     component: AddStory,
+  },
+
+  {
+    path: 'edit/:id',
+    component: EditStory,
   },
 ];
