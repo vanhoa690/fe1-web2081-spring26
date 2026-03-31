@@ -30,11 +30,13 @@ export class EditStory {
     this.http.get(`http://localhost:3000/stories/${this.id}`).subscribe({
       next: (data: any) => {
         console.log(data);
+        this.editForm.patchValue(data);
       },
     });
   }
 
   submitForm() {
     console.log(this.editForm.value);
+    // call api update story
   }
 }
