@@ -1,1 +1,9 @@
-<p>edit-story works!</p>
+<h2 class="text-xl">Cập nhật truyện tranh</h2>
+
+<form [formGroup]="editForm" (ngSubmit)="submitForm()">
+  <div>
+    <label>Tên truyện</label>
+    <input type="text" formControlName="title" />
+  </div>
+  <button type="submit">Cập nhật truyện</button>
+</form>
