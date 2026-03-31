@@ -38,5 +38,13 @@ export class EditStory {
   submitForm() {
     console.log(this.editForm.value);
     // call api update story
+    this.http.put(`http://localhost:3000/stories/${this.id}`, this.editForm.value).subscribe({
+      next: () => {
+        alert('Story updated successfully!');
+      },
+      error: () => {
+        alert('Failed to update story!');
+      },
+    });
   }
 }
