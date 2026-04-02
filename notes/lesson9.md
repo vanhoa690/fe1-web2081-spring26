@@ -13,9 +13,9 @@
 
 Luồng:
 
-1.  Nhập form\
-2.  Validate\
-3.  Submit → POST `/register`\
+1.  Nhập form
+2.  Validate
+3.  Submit → POST `/register`
 4.  Thành công → thông báo / chuyển trang
 
 ---
@@ -32,9 +32,10 @@ import { Router } from "@angular/router";
   selector: "app-register",
   imports: [ReactiveFormsModule],
   templateUrl: "./register.html",
+  styleUrl: "./register.css",
 })
-export class RegisterUser {
-  addForm: FormGroup;
+export class Register {
+  registerForm: FormGroup;
 
   loading = false;
   error = "";
@@ -45,16 +46,16 @@ export class RegisterUser {
     private http: HttpClient,
     private router: Router,
   ) {
-    this.addForm = this.fb.group({
-      name: ["", [Validators.required, Validators.minLength(3)]],
-      email: ["", [Validators.required, Validators.email]],
-      password: ["", [Validators.required, Validators.minLength(6)]],
+    this.registerForm = this.fb.group({
+      name: "",
+      email: "",
+      password: "",
     });
   }
 
   submitForm() {
-    if (this.addForm.invalid) {
-      this.addForm.markAllAsTouched();
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
       return;
     }
 
@@ -62,7 +63,7 @@ export class RegisterUser {
     this.error = "";
     this.success = "";
 
-    const data = this.addForm.value;
+    const data = this.registerForm.value;
 
     this.http.post("http://localhost:3000/register", data).subscribe({
       next: () => {
@@ -87,7 +88,7 @@ export class RegisterUser {
 <div class="p-6 max-w-md mx-auto">
   <h1 class="text-2xl font-semibold mb-6">Đăng ký</h1>
 
-  <form [formGroup]="addForm" (ngSubmit)="submitForm()" class="space-y-6">
+  <form [formGroup]="registerForm" (ngSubmit)="submitForm()" class="space-y-6">
     <div>
       <label class="block font-medium mb-1">Tên</label>
       <input formControlName="name" type="text" class="w-full border rounded-lg px-3 py-2" />
