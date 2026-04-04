@@ -46,4 +46,19 @@ export class Stories implements OnInit {
       },
     });
   }
+
+  // getAllStories() {
+  //   this.http
+  //     .get<Story[]>('http://localhost:3000/stories', {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem('token')}`,
+  //       },
+  //     })
+  //     .subscribe({
+  //       next: (data) => {
+  //         this.stories = data;
+  //       },
+  //       error: () => {},
+  //     });
+  // }
 }
