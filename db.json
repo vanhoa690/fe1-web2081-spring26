@@ -5,5 +5,11 @@
       "id": 1
     }
   ],
-  "users": []
+  "users": [
+    {
+      "email": "vanhoa690@gmail.com",
+      "password": "$2a$10$dTPWcwIVKE.XpJN1G0EP6utAhpsv74ehrUmQCmTRs7iuqmlrJARyy",
+      "id": 1
+    }
+  ]
 }
